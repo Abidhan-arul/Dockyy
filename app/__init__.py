@@ -10,6 +10,9 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///docky.db'
     app.config['SECRET_KEY'] = 'secret'
 
+    # Ensure the uploads directory exists
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
     db.init_app(app)
 
     from .routes import main
